@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Una pregunta para Dany</title>
+    <title>Una pregunta para Dany ❤️</title>
 
     <style>
         body {
@@ -108,6 +108,7 @@
 
         <!-- Yes and No buttons -->
         <div id="buttons">
+
             <button class="button" onclick="yes()">
                 ¡Sí! ❤️
             </button>
@@ -115,44 +116,44 @@
             <button class="button" onclick="no()">
                 No 💔
             </button>
+
         </div>
 
-        <!-- Result -->
-        <div id="result"></div>
-
-        <!-- Return button (hidden initially) -->
-        <div id="backButton" style="display: none;">
-            <button class="button" onclick="goHome()">
-                ❤️ Volver al inicio
-            </button>
-        </div>
+        <!-- Result appears here -->
+        <div id="result" aria-live="polite"></div>
 
     </div>
 
     <script>
 
-        // When Dany clicks YES
-        function yes() {
+        // Show the selected response
+        function showResult(content) {
 
-            const resultDiv = document.getElementById("result");
-
-            // Hide original question and buttons
             document.getElementById("buttons").style.display = "none";
             document.getElementById("question").style.display = "none";
             document.getElementById("mainCat").style.display = "none";
 
-            // Show celebration
-            resultDiv.innerHTML = `
-                <img src="monkeyflower.jpg" alt="monkeyflower">
+            document.getElementById("result").innerHTML = content;
+        }
+
+        // When Dany clicks YES
+        function yes() {
+
+            showResult(`
+                <img
+                    src="monkeyflower.jpg"
+                    alt="Monkey with flower"
+                >
 
                 <h2>
                     Ahora soy el hombre más afortunado
                     del mundo. Espero verte pronto.
                 </h2>
-            `;
 
-            // Show return button
-            document.getElementById("backButton").style.display = "block";
+                <button class="button" onclick="goHome()">
+                    ❤️ Volver al inicio
+                </button>
+            `);
 
             // Floating hearts
             for (let i = 0; i < 30; i++) {
@@ -163,42 +164,32 @@
         // When Dany clicks NO
         function no() {
 
-            const resultDiv = document.getElementById("result");
-
-            // Hide original question and buttons
-            document.getElementById("buttons").style.display = "none";
-            document.getElementById("question").style.display = "none";
-            document.getElementById("mainCat").style.display = "none";
-
-            // Show sad cat
-            resultDiv.innerHTML = `
+            showResult(`
                 <img
                     src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NHI3YmgwOGo5eTl3ZnZ2M2NtNmpnNWxocWR0eml6cmcwa3ljcXJ2ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kEJscDl20aQ1oASxKP/giphy.gif"
                     alt="Sad Cat"
                 >
 
                 <h2>¡La cagué!</h2>
-            `;
 
-            // Show return button
-            document.getElementById("backButton").style.display = "block";
+                <button class="button" onclick="goHome()">
+                    ❤️ Volver al inicio
+                </button>
+            `);
         }
 
-        // Return to original homepage
+        // Return to homepage
         function goHome() {
 
-            // Show original content
+            // Restore original content
             document.getElementById("buttons").style.display = "block";
             document.getElementById("question").style.display = "block";
             document.getElementById("mainCat").style.display = "inline-block";
 
-            // Clear previous result
+            // Remove the previous response
             document.getElementById("result").innerHTML = "";
 
-            // Hide return button
-            document.getElementById("backButton").style.display = "none";
-
-            // Remove existing floating hearts
+            // Remove floating hearts
             document.querySelectorAll(".heart").forEach(heart => {
                 heart.remove();
             });
@@ -226,6 +217,11 @@
                 heart.remove();
             }, 4000);
         }
+
+    </script>
+
+</body>
+</html>
 
     </script>
 
