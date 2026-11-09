@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Una pregunta para Dany </title>
+    <title>Una pregunta para Dany</title>
 
     <style>
         body {
@@ -101,24 +101,31 @@
 
         <!-- Invitation -->
         <h2 id="question">
-            Dany, me darias el honor de tener una
+            Dany, ¿me darías el honor de tener una
             cita de pelis contigo por FaceTime
-            cuando tengas un ratito libre? 
+            cuando tengas un ratito libre?
         </h2>
 
-        <!-- Buttons -->
+        <!-- Yes and No buttons -->
         <div id="buttons">
             <button class="button" onclick="yes()">
-                Si! 
+                ¡Sí! ❤️
             </button>
 
             <button class="button" onclick="no()">
-                No 
+                No 💔
             </button>
         </div>
 
         <!-- Result -->
         <div id="result"></div>
+
+        <!-- Return button (hidden initially) -->
+        <div id="backButton" style="display: none;">
+            <button class="button" onclick="goHome()">
+                ❤️ Volver al inicio
+            </button>
+        </div>
 
     </div>
 
@@ -129,20 +136,23 @@
 
             const resultDiv = document.getElementById("result");
 
-            // Hide question, buttons and original cat
+            // Hide original question and buttons
             document.getElementById("buttons").style.display = "none";
             document.getElementById("question").style.display = "none";
             document.getElementById("mainCat").style.display = "none";
 
             // Show celebration
             resultDiv.innerHTML = `
-            <img src="monkeyflower.jpg" alt="monkeyflower">
+                <img src="monkeyflower.jpg" alt="monkeyflower">
 
                 <h2>
-                    Ahora soy el hombre mas afortunado del mundo. Espero verte pronto. 
+                    Ahora soy el hombre más afortunado
+                    del mundo. Espero verte pronto.
                 </h2>
-
             `;
+
+            // Show return button
+            document.getElementById("backButton").style.display = "block";
 
             // Floating hearts
             for (let i = 0; i < 30; i++) {
@@ -155,18 +165,43 @@
 
             const resultDiv = document.getElementById("result");
 
+            // Hide original question and buttons
             document.getElementById("buttons").style.display = "none";
             document.getElementById("question").style.display = "none";
             document.getElementById("mainCat").style.display = "none";
 
+            // Show sad cat
             resultDiv.innerHTML = `
                 <img
                     src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NHI3YmgwOGo5eTl3ZnZ2M2NtNmpnNWxocWR0eml6cmcwa3ljcXJ2ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kEJscDl20aQ1oASxKP/giphy.gif"
                     alt="Sad Cat"
                 >
 
-                <h2>La cague! </h2>
+                <h2>¡La cagué!</h2>
             `;
+
+            // Show return button
+            document.getElementById("backButton").style.display = "block";
+        }
+
+        // Return to original homepage
+        function goHome() {
+
+            // Show original content
+            document.getElementById("buttons").style.display = "block";
+            document.getElementById("question").style.display = "block";
+            document.getElementById("mainCat").style.display = "inline-block";
+
+            // Clear previous result
+            document.getElementById("result").innerHTML = "";
+
+            // Hide return button
+            document.getElementById("backButton").style.display = "none";
+
+            // Remove existing floating hearts
+            document.querySelectorAll(".heart").forEach(heart => {
+                heart.remove();
+            });
         }
 
         // Create floating hearts
@@ -191,6 +226,12 @@
                 heart.remove();
             }, 4000);
         }
+
+    </script>
+
+</body>
+</html>
+
 
     </script>
 
