@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Una pregunta para Dany </title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffc0cb;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+
+        h2 {
+            color: #a31545;
+            line-height: 1.5;
+        }
+
+        p {
+            color: #a31545;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 8px;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        #result {
+            margin-top: 25px;
+        }
+
+        #result img {
+            max-width: 250px;
+            height: auto;
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 25px;
+            pointer-events: none;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Main cat GIF -->
+        <img
+            id="mainCat"
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGNjMGwyM3Fzd2h3OXR6YzAyZThjenM2Zm9mdXNzcG5oZzVobGJ6MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OSy990rrxpfuQqi487/giphy.gif"
+            alt="Cat with a rose"
+        >
+
+        <!-- Invitation -->
+        <h2 id="question">
+            Dany, me darias el honor de tener una
+            cita de pelis contigo por FaceTime
+            cuando tengas un ratito libre? 
+        </h2>
+
+        <!-- Buttons -->
+        <div id="buttons">
+            <button class="button" onclick="yes()">
+                Si! 
+            </button>
+
+            <button class="button" onclick="no()">
+                No 
+            </button>
+        </div>
+
+        <!-- Result -->
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        // When Dany clicks YES
+        function yes() {
+
+            const resultDiv = document.getElementById("result");
+
+            // Hide question, buttons and original cat
+            document.getElementById("buttons").style.display = "none";
+            document.getElementById("question").style.display = "none";
+            document.getElementById("mainCat").style.display = "none";
+
+            // Show celebration
+            resultDiv.innerHTML = `
+            <img src="monkeyflower.jpg" alt="monkeyflower">
+
+                <h2>
+                    Ahora soy el hombre mas afortunado del mundo. Espero verte pronto. 
+                </h2>
+
+            `;
+
+            // Floating hearts
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 150);
+            }
+        }
+
+        // When Dany clicks NO
+        function no() {
+
+            const resultDiv = document.getElementById("result");
+
+            document.getElementById("buttons").style.display = "none";
+            document.getElementById("question").style.display = "none";
+            document.getElementById("mainCat").style.display = "none";
+
+            resultDiv.innerHTML = `
+                <img
+                    src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NHI3YmgwOGo5eTl3ZnZ2M2NtNmpnNWxocWR0eml6cmcwa3ljcXJ2ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kEJscDl20aQ1oASxKP/giphy.gif"
+                    alt="Sad Cat"
+                >
+
+                <h2>La cague! </h2>
+            `;
+        }
+
+        // Create floating hearts
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+
+            // Random horizontal position
+            heart.style.left = Math.random() * 100 + "vw";
+
+            // Random heart size
+            heart.style.fontSize =
+                (Math.random() * 20 + 15) + "px";
+
+            document.body.appendChild(heart);
+
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+    </script>
+
+</body>
+</html>
